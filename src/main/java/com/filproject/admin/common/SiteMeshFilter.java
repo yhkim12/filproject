@@ -13,7 +13,7 @@ public class SiteMeshFilter extends ConfigurableSiteMeshFilter {
 	protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
 		logger.debug("applyCustomConfiguration");
 
-		final String path = "/WEB-INF/views/_decorators/";
+		final String path = "/WEB-INF/views/admin/_decorators/";
 		SiteMeshDecoratorSelector decoratorSelector = new SiteMeshDecoratorSelector();
 
 		decoratorSelector.putMapping(SiteMeshDecoratorSelector.DEFAULT, path
@@ -33,6 +33,7 @@ public class SiteMeshFilter extends ConfigurableSiteMeshFilter {
 		// Assign
 		builder.setCustomDecoratorSelector(decoratorSelector)
 				.addExcludedPath("/resources/*")
+				.addExcludedPath("/user/*")
 				.addExcludedPath("*Ajax*")
 				.addExcludedPath("/login*")
 				.addExcludedPath("*Proc*")

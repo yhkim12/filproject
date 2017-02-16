@@ -20,7 +20,7 @@ public class SiteMeshDecoratorSelector extends
 
 	public static final String DEFAULT = "default";
 
-	private final String defaultDecorator = "/WEB-INF/views/_decorators/default.jsp";
+	private final String defaultDecorator = "/WEB-INF/views/admin/_decorators/default.jsp";
 	private final Map<String, String> mappings = new HashMap<String, String>();
 
 	@Override

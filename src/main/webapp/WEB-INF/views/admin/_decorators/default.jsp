@@ -40,9 +40,9 @@
 		<span class="spinner"></span>
 	</div>
 	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed in">
-		<%@include file="/WEB-INF/views/_decorators/inc/header.jsp" %>
-		<%@include file="/WEB-INF/views/_decorators/inc/gnb.jsp" %>
-		<%@include file="/WEB-INF/views/_decorators/inc/lnb.jsp" %>
+		<%@include file="/WEB-INF/views/admin/_decorators/inc/header.jsp" %>
+		<%@include file="/WEB-INF/views/admin/_decorators/inc/gnb.jsp" %>
+		<%@include file="/WEB-INF/views/admin/_decorators/inc/lnb.jsp" %>
 		<div class="container" id="ajax-content">
 		<sitemesh:write property="body"/>
 		</div>
