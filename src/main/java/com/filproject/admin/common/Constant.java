@@ -15,6 +15,8 @@ public class Constant {
 	public final static String SUCCESS 		= "success";	// 성공
 	public final static String FAIL 		= "fail";		// 취소
 	
+	public final static String STAT_CD = "FIL001"; //테스트 코드  
+	
 //	public static String UPLOAD_URL_KEY;
 //	public static String UPLOAD_PATH;
 //	public static String UPLOAD_URL;

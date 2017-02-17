@@ -1,5 +1,6 @@
 package com.filproject.admin.member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.filproject.admin.common.Constant;
 import com.filproject.admin.member.service.AdminMemberService;
+import com.filproject.code.CodeManager;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,9 +36,10 @@ public class AdminMemberController {
 	@ResponseBody
 	public Map<String, Object> test(HttpServletRequest request) throws Exception {
 		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("subCodeList", CodeManager.getSubCodeList(Constant.STAT_CD));
+		resultMap.put("test", adminMemberService.test());
 		
-		System.out.println("msg test : "+request.getAttribute("msg"));
-		
-		return adminMemberService.test();
+		return resultMap;
 	}
 }
