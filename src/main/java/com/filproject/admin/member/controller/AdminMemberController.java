@@ -25,11 +25,19 @@ public class AdminMemberController {
 	@Autowired
 	private MessageSourceAccessor mr;
 	
-	
+	//로그인 페이지로 이동
 	@RequestMapping(value={"/", "/login"})
 	public String login() {
 		
 		return Constant.adminDefaultPath + "login";
+	}
+	
+	//로그인 ajax
+	@RequestMapping(value={"/", "/loginAjax"})
+	@ResponseBody
+	public Map<String, Object> loginAjax(Map<String, Object> map) {
+		
+		return map;
 	}
 	
 	@RequestMapping(value={"/test"})

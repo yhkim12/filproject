@@ -42,22 +42,19 @@
 			<!-- begin brand -->
 			<div class="login-header">
 				<div class="brand">
-					<span class="logo"></span> PS&M Casegrapher <small>관리자 시스템 입니다.</small>
+					<span class="logo"></span> FIL <small>관리자 시스템 입니다.</small>
 				</div>
 			</div>
 			<!-- end brand -->
 			<div class="login-content">
 				<div class="form-group m-b-20">
-					<input type="text" class="form-control input-lg" placeholder="ID" id="mbrId" name="mbrId" value="${savedId}" />
+					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value="" />
 				</div>
 				<div class="form-group m-b-20">
-					<input type="password" class="form-control input-lg" placeholder="Password" id="pw" name="pw" value="" />
-				</div>
-				<div class="checkbox m-b-20">
-					<label><input type="checkbox" id="saveIdYn" name="saveIdYn" value="Y" <c:if test="${savedId ne ''}">checked</c:if> /> ID 저장</label>
+					<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="" />
 				</div>
 				<div class="login-buttons">
-					<button type="button" class="btn btn-success btn-block btn-lg" id="loginBtn">로그인하기</button>
+					<button type="button" class="btn btn-success btn-block btn-lg" id="loginBtn" name="chk_login">로그인하기</button>
 				</div>
 				<div class="m-t-20">
 					<!-- 회원 등록은 다음 연락처로 문의 해주세요. -->
@@ -67,9 +64,9 @@
 	</div>
 	
 	<script type="text/javascript">
-		var url = '/loginProcAjax';
+		var url = '/admin/loginAjax';
 		$(function() {
-			$('#mbrId, #pw').keydown(function(key){
+			$('#memId, #memPw').keydown(function(key){
 				if(key.keyCode == 13){
 					$('#loginBtn').click();
 				}
@@ -77,24 +74,13 @@
 		});
 		
 		$('#loginBtn').on('click',function(){
-
-			if ($('#mbrId').val().isBlank()) {
-				alert('ID를 입력해주세요.');
-				$('#mbrId').focus();
-				return;
-			}
 			
-			if ($('#pw').val().isBlank()) {
-				alert('password를 입력해주세요.');
-				$('#pw').focus();
-				return;
-			}
 
 		CALL_AJAX.reqAjax({
 				type		: 'POST',
     			url			: url,
     			dataType	: 'json',
-    			data		: {'mbrId': $('#mbrId').val(), 'pw': $('#pw').val(), 'saveIdYn': $('#saveIdYn:checked').val()},
+    			data		: {'memId': $('#memId').val(), 'memPw': $('#memPw').val()},
     			success		: ajaxSuccFunc,
     			error       : ajaxFailFunc
 			});
