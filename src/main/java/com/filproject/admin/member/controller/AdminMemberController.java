@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.filproject.admin.common.Constant;
@@ -33,11 +34,11 @@ public class AdminMemberController {
 	}
 	
 	//로그인 ajax
-	@RequestMapping(value={"/", "/loginAjax"})
+	@RequestMapping(value={"/loginAjax"})
 	@ResponseBody
-	public Map<String, Object> loginAjax(Map<String, Object> map) {
-		
-		return map;
+	public Map<String, Object> loginAjax(@RequestParam Map<String, Object> map) throws Exception {
+
+		return adminMemberService.loginAjax(map);
 	}
 	
 	@RequestMapping(value={"/test"})

@@ -7,5 +7,9 @@
   <select id="test" resultType="HashMap">
     select seq, mem_id from t_member limit 1 
   </select>
+  
+  <select id="selectMemberCnt" parameterType="map" resultType="int">
+ 	select count(*) from t_admin_member where mem_id = #{memId} and mem_pw = #{memPw}
+  </select>
  
 </mapper>

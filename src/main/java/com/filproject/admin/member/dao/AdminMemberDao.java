@@ -9,4 +9,6 @@ public interface AdminMemberDao {
 
 	Map<String, Object> test() throws Exception;
 
+	int selectMemberCnt(Map<String, Object> map) throws Exception;
+
 }
