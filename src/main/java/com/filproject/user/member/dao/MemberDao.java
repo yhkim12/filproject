@@ -1,5 +1,7 @@
 package com.filproject.user.member.dao;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MemberDao {
-
+	
+	int selectMemberCnt(Map<String, Object> map) throws Exception;
 }
