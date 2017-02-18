@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!--Converted at: Mon Mar 23 17:00:32 KST 2015-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.filproject.code.CodeDao">
+
+	<resultMap id="get_dmn_code_result" type="com.filproject.code.CodeVO">
+		<result property="upCd" column="UP_CD" />
+		<result property="cd" column="CD" />
+		<result property="cdNm" column="CD_NM" />
+		<result property="ord" column="ORD"/>
+		<collection property="subCodeList" javaType="ArrayList" column="{upCd=cd}" ofType="com.filproject.code.CodeVO" select="selectSubCodeList"/>
+	</resultMap>
+	
+	<resultMap id="get_sub_code_result" type="com.filproject.code.CodeVO">
+		<result property="upCd" column="UP_CD" />
+		<result property="cd" column="CD" />
+		<result property="cdNm" column="CD_NM" />
+		<result property="ord" column="ORD"/>
+	</resultMap>
+	
+	<resultMap id="get_code_result" type="com.filproject.code.CodeVO">
+		<result property="upCd"   column="UP_CD"    />
+		<result property="upCdNm" column="UP_CD_NM" />
+		<result property="cd"     column="CD"       />
+		<result property="cdNm"   column="CD_NM"    />
+		<result property="step"   column="STEP"     />
+		<result property="ord"    column="ORD"      />
+		<result property="useYn"  column="USE_YN"   />
+	</resultMap>
+	
+<!-- 코드 도메인 리스트 가져오기 -->
+<select id="selectAllCodeList" resultMap="get_dmn_code_result">
+<![CDATA[
+	SELECT
+	  /* [CodeManager_mapper.xml][codeManager.selectAllCodeList][도메인 코드 목록 조회] */
+	  UP_CD ,CD, CD_NM, ORD
+	FROM
+	  t_common_code
+	WHERE
+	  UP_CD IN ('FIL')
+	  AND DEL_YN = 'N'
+	ORDER BY CD
+]]>
+</select>
+
+<!-- 서브 코드 리스트 가져오기  -->
+<select id="selectSubCodeList" parameterType="com.filproject.code.CodeVO" resultMap="get_sub_code_result">
+<![CDATA[
+	SELECT
+	  /* [CodeManager_mapper.xml][codeManager.selectSubCodeList][서브 코드 목록 조회] */
+	  UP_CD
+	  ,CD
+	  ,CD_NM
+	  ,ORD
+	FROM
+	  t_common_code
+	WHERE
+	  UP_CD = #{upCd}
+	  AND DEL_YN = 'N'
+	ORDER BY ORD, CD
+]]>
+</select>
+
+<!-- 코드 리스트 가져오기  -->
+<select id="selectCodeList" parameterType="com.filproject.code.CodeVO" resultMap="get_code_result">
+	SELECT
+			/* [CodeManager_mapper.xml][codeManager.selectCodeList][T_COMMON_CODE Select List] */
+			A1.CD
+		  , A1.UP_CD
+		  , B1.CD_NM                        AS UP_CD_NM
+		  , A1.CD_NM
+		  , A1.ORD
+		  , A1.USE_YN
+	FROM    T_COMMON_CODE                   A1
+	INNER JOIN
+			T_COMMON_CODE                   B1
+			ON  A1.UP_CD                    = B1.CD
+	WHERE   A1.UP_CD                        != 'PCG'
+	AND     A1.DEL_YN                       = 'N'
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schUpCd)">
+	AND     UPPER(TRIM(A1.UP_CD))           = UPPER(TRIM(#{schUpCd}))
+	</if>
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schCd)">
+	AND     UPPER(TRIM(A1.CD))              LIKE CONCAT('%', UPPER(TRIM(#{schCd})), '%')
+	</if>
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schCdNm)">
+	AND     UPPER(TRIM(A1.CD_NM))           LIKE CONCAT('%', UPPER(TRIM(#{schCdNm})), '%')
+	</if>
+	ORDER BY
+		   A1.UP_CD                         DESC
+		 , A1.ORD                           DESC
+	LIMIT #{firstIndex}, #{recordCountPerPage}
+</select>
+
+<!-- [관리자 > 코드관리 > 수정 페이지] -->
+<select id="selectCode" parameterType="com.filproject.code.CodeVO" resultMap="get_code_result">
+	SELECT /*  [CodeManager_mapper.xml][codeManager.selectCode][T_COMMON_CODE Select code] */
+			A1.CD
+		  , A1.UP_CD
+		  , A1.CD_NM
+		  , A1.STEP
+		  , A1.ORD
+		  , A1.USE_YN
+		  , DATE_FORMAT(A1.REG_DM, "%Y-%m-%d %H:%i") AS REG_DM
+		  , COALESCE(DATE_FORMAT(A1.UDT_DM, "%Y-%m-%d %H:%i"), '-') AS UDT_DM
+	FROM    T_COMMON_CODE                   A1
+	WHERE   A1.UP_CD                        = #{upCd}
+	AND     A1.CD                           = #{cd}
+</select>
+
+<!-- [관리자 > 코드관리 > 목록갯수]  -->
+<select id="selectCodeListTotalCnt" parameterType="com.filproject.code.CodeVO" resultType="int">
+	SELECT
+			/* [CodeManager_mapper.xml][codeManager.selectCodeListTotalCnt][T_COMMON_CODE Select count] */
+			COUNT(1)
+	FROM    T_COMMON_CODE                   A1
+	INNER JOIN
+			T_COMMON_CODE                   B1
+			ON  A1.UP_CD                    = B1.CD
+	WHERE   A1.UP_CD                        != 'PCG'
+	AND     A1.DEL_YN                       = 'N'
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schUpCd)">
+	AND     UPPER(TRIM(A1.UP_CD))           = UPPER(TRIM(#{schUpCd}))
+	</if>
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schCd)">
+	AND     UPPER(TRIM(A1.CD))              LIKE CONCAT('%', UPPER(TRIM(#{schCd})), '%')
+	</if>
+	<if test="@kr.co.d2.d2jwork.util.StringUtil@isNotEmpty(schCdNm)">
+	AND     UPPER(TRIM(A1.CD_NM))           LIKE CONCAT('%', UPPER(TRIM(#{schCdNm})), '%')
+	</if>
+</select>
+
+<!-- [관리자 > 코드관리 > 중복건수]  -->
+<select id="selectCodeCount" parameterType="com.filproject.code.CodeVO" resultType="int">
+	SELECT
+	  /* [CodeManager_mapper.xml][codeManager.selectCodeCount}][T_COMMON_CODE Select cd Count] */
+			COUNT(1)                        AS totcnt
+	FROM    T_COMMON_CODE
+	WHERE   CD                              = #{cd}
+	AND     UP_CD                           = #{upCd}
+</select>
+
+<!-- [관리자 > 코드관리 > 등록처리]  -->
+<insert id="insertCode" parameterType="com.filproject.code.CodeVO" >
+	INSERT
+	/* [CodeManager_mapper.xml][codeManager.insertCode][T_COMMON_CODE Insert] */
+	INTO T_COMMON_CODE
+	(
+		  UP_CD
+		, CD
+		, CD_NM
+		, ORD
+		, STEP
+		, USE_YN
+		, REG_MBR_NO
+		, REG_DM
+		, UDT_MBR_NO
+		, UDT_DM
+	)
+	VALUES
+	(
+		  TRIM(#{upCd})
+		, TRIM(#{cd})
+		, TRIM(#{cdNm})
+		, TRIM(#{ord})
+		, TRIM(#{step})
+		, TRIM(#{useYn})
+		, #{regMbrNo}
+		, NOW()
+		, #{udtMbrNo}
+		, NOW()
+	)
+</insert>
+
+<!-- [관리자 > 코드관리 > 수정처리]  -->
+<update id="updateCode" parameterType="com.filproject.code.CodeVO">
+	UPDATE
+	  /* [CodeManager_mapper.xml][codeManager.updateCode][T_COMMON_CODE Update] */
+	  T_COMMON_CODE
+	SET
+		CD_NM          = TRIM(#{cdNm})
+	  , ORD            = TRIM(#{ord})
+	  , STEP           = TRIM(#{step})
+	  , USE_YN         = TRIM(#{useYn})
+	  , UDT_MBR_NO     = #{udtMbrNo}
+	  , UDT_DM         = NOW()
+	WHERE
+		UP_CD          = #{upCd}
+	AND CD             = #{cd}
+</update>
+
+<!-- [관리자 > 코드관리 > 삭제처리] -->
+<update id="updateCodeDelYn" parameterType="com.filproject.code.CodeVO">
+	UPDATE
+	  /*[CodeManager_mapper.xml][codeManager.updateCodeDelYn][T_COMMON_CODE update]*/
+	  T_COMMON_CODE
+	SET
+		DEL_YN     = 'Y'
+	  , USE_YN     = 'N'
+	  , UDT_MBR_NO = #{udtMbrNo}
+	  , UDT_DM     = NOW()
+	WHERE
+	  UP_CD        = #{upCd}
+	AND CD         = #{cd}
+	</update>
+
+
+</mapper>

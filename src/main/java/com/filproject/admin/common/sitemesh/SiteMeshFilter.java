@@ -1,4 +1,4 @@
-package com.filproject.admin.common;
+package com.filproject.admin.common.sitemesh;
 
 import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;

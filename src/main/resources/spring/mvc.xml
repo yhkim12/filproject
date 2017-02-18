@@ -20,6 +20,23 @@
 	        <property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<mvc:interceptors>
+		<!-- 어드민 인터셉터 -->
+    	<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/upload/**" />
+			<bean class="com.filproject.admin.common.interceptor.AdminCommonInterceptor" />
+    	</mvc:interceptor>
+    	<!-- 유저 인터셉터 
+    	<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/upload/**" />
+			<bean class="com.psnmcase.admin.common.interceptor.CommonInterceptor" />
+    	</mvc:interceptor>-->
+    </mvc:interceptors>
+    
 	<mvc:resources mapping="/js/**" location="/resources/js/" />
 	<mvc:resources mapping="/css/**" location="/resources/css/" />
 
