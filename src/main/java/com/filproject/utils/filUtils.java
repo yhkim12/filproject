@@ -34,7 +34,7 @@ public class filUtils {
 	
     
     //1차암호화
-	public static String getSeedMD5Code(String str){
+	public static String getFilMD5Code(String str){
 
 		String MD5 = ""; 
 		
@@ -49,7 +49,7 @@ public class filUtils {
 			 }
 			 MD5 = sb.toString();
 		 }catch(NoSuchAlgorithmException e){
-			 log.error("filUtils getSeedMD5Code Error");
+			 log.error("filUtils getFilMD5Code Error");
 			 MD5 = ""; 
 		 }
 		 
@@ -57,7 +57,7 @@ public class filUtils {
 	}
 	
 	//2차 암호화
-	public static String getSeedSHA256Code(String str){
+	public static String getFilSHA256Code(String str){
 
 		String SHA256 = ""; 
 		
@@ -72,7 +72,7 @@ public class filUtils {
 			 }
 			 SHA256 = sb.toString();
 		 }catch(NoSuchAlgorithmException e){
-			 log.error("SeedUtils getSeedSHA256Code Error");
+			 log.error("FilUtils getFilSHA256Code Error");
 			 SHA256 = ""; 
 		 }
 		 
