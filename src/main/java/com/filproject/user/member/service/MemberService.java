@@ -1,4 +1,7 @@
+
 package com.filproject.user.member.service;
+
+import java.util.Map;
 
 /**
  * 회원 관련 서비스
@@ -6,5 +9,7 @@ package com.filproject.user.member.service;
  *
  */
 public interface MemberService {
+
+	Map<String, Object> loginAjax(Map<String, Object> map) throws Exception;
 
 }
