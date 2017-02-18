@@ -48,10 +48,10 @@
 			<!-- end brand -->
 			<div class="login-content">
 				<div class="form-group m-b-20">
-					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value="" />
+					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value=admin" />
 				</div>
 				<div class="form-group m-b-20">
-					<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="" />
+					<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="1234" />
 				</div>
 				<div class="login-buttons">
 					<button type="button" class="btn btn-success btn-block btn-lg" onsubmit="return false;" id="loginBtn" name="chk_login">로그인하기</button>
@@ -89,7 +89,7 @@
 		var ajaxSuccFunc = function(data){
 			if (data.success == 'Y') {
 				alert('성공');
-				location.href = '/index';				
+				location.href = '/admin/member/list';				
 			} else {
 				alert('실패');
 			}

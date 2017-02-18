@@ -41,6 +41,14 @@ public class AdminMemberController {
 		return adminMemberService.loginAjax(map);
 	}
 	
+	//회원 목록 조회
+	@RequestMapping(value={"/member/list"})
+	public String memberList(@RequestParam Map<String, Object> map) throws Exception {
+
+		return Constant.adminDefaultPath + "/member/list";
+	}
+	
+	
 	@RequestMapping(value={"/test"})
 	@ResponseBody
 	public Map<String, Object> test(HttpServletRequest request) throws Exception {
