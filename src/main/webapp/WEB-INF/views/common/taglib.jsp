@@ -6,4 +6,5 @@
 <%
 pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
 %>
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
 <c:set var="IMG_EXT">jpg, png, jpeg</c:set>

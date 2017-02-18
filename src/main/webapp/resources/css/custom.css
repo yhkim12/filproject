@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+div.miniTitle {background-color: red; width: 250px;}
+
+div.mainContent {height: 90%; background-color: #F6F6F6; overflow:scroll;}
+
+div.headerTitle {height: 5%; background-color: #E0FFDB;}
+
+div.footerTitle {height: 5%; background-color: #E0FFDB;}
