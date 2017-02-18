@@ -21,6 +21,9 @@ public class AdminCommonInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
 
+		
+		
+		//
 		request.setAttribute("msg", mr.getMessage("msg.common.test"));
 
 		return true;
