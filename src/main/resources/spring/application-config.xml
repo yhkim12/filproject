@@ -25,7 +25,8 @@
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://surak.c9x21ux2aoyw.ap-northeast-2.rds.amazonaws.com:3306/FIL?serverTimezone=UTC"/>
+<!--         <property name="url" value="jdbc:mysql://surak.c9x21ux2aoyw.ap-northeast-2.rds.amazonaws.com:3306/FIL?serverTimezone=UTC"/> -->
+        <property name="url" value="jdbc:mysql://surak.c9x21ux2aoyw.ap-northeast-2.rds.amazonaws.com:3306/FIL?zeroDateTimeBehavior=convertToNull"/>
         <property name="username" value="surak"/>
         <property name="password" value="1q2w3e4r5t"/>
     </bean>

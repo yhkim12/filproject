@@ -50,7 +50,6 @@ public class AdminMemberController {
 	
 	
 	@RequestMapping(value={"/test"})
-	@ResponseBody
 	public Map<String, Object> test(HttpServletRequest request) throws Exception {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
