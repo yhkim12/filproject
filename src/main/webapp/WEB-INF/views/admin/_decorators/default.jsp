@@ -12,17 +12,16 @@
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
 
-    <link href="/css/bootstrap/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core CSS -->
-    <link href="/css/bootstrap/sb-admin.css" rel="stylesheet"><!-- Custom CSS -->
-	<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- Custom Fonts -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core CSS -->
+    <link href="/bootstrap/css/sb-admin.css" rel="stylesheet"><!-- Custom CSS -->
+	<link href="/bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- Custom Fonts -->
 
-	<link rel="stylesheet" type="text/css" media="screen" href="/resources/js/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/js/jquery-ui/jquery-ui.css" />
 
 	<script type="text/ecmascript" src="/js/jquery/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui/jquery-ui.min.js"></script>
 	
-    <script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script><!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script><!-- Bootstrap Core JavaScript -->
 
 	<script type="text/javascript" src="/js/ajax.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>

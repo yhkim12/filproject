@@ -37,7 +37,8 @@ public class SiteMeshFilter extends ConfigurableSiteMeshFilter {
 				.addExcludedPath("*Ajax*")
 				.addExcludedPath("/admin/login*")
 				.addExcludedPath("*Proc*")
-				.addExcludedPath("/index.jsp");
+				.addExcludedPath("/index.jsp")
+				.addExcludedPath("/admin/");
 	}
 
 }

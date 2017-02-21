@@ -16,14 +16,12 @@
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
 	<link rel="stylesheet" href="/css/style.css" />
 	<link rel="stylesheet" href="/css/theme/default.css" id="theme" />
-	<link rel="stylesheet" href="/resources/css/font-awesome/css/font-awesome.css" /><!-- 폰트는 호출 경로와 사용 경로가 같아야 함. -->
-	<link rel="stylesheet" href="/js/bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="/js/bootstrap/css/bootstrap-theme.min.css" />
-	<link rel="stylesheet" href="/css/d3net.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/resources/js/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" href="/bootstrap/font-awesome/css/font-awesome.css" /><!-- 폰트는 호출 경로와 사용 경로가 같아야 함. -->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/js/jquery-ui/jquery-ui.css" />
 
 	<script type="text/ecmascript" src="/js/jquery/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="/js/jquery-ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/jquery.form.js"></script>
 
 	<script type="text/javascript" src="/js/ajax.js"></script>
@@ -48,7 +46,7 @@
 			<!-- end brand -->
 			<div class="login-content">
 				<div class="form-group m-b-20">
-					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value=admin" />
+					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value="admin" />
 				</div>
 				<div class="form-group m-b-20">
 					<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="1234" />
