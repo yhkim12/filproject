@@ -8,6 +8,9 @@
                     <li id="lnb_li_board" class="active">
                         <a href="/admin/board/list"><i class="fa fa-fw fa-bar-chart-o"></i> 게시판</a>
                     </li>
+                    <li id="lnb_li_code" class="active">
+                        <a href="/admin/code/list"><i class="fa fa-fw fa-bar-chart-o"></i> 코드</a>
+                    </li>
                     <!-- 
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="" aria-expanded="true"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -61,6 +64,8 @@ if (url.indexOf('/member/') > 0) {
 	$('#lnb_li_member').addClass('active');
 } else if (url.indexOf('/board/') > 0) {
 	$('#lnb_li_board').addClass('active');
+} else if (url.indexOf('/code/') > 0) {
+	$('#lnb_li_code').addClass('active');
 }
 
 </script>

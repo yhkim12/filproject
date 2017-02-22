@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans:beans xmlns="http://www.springframework.org/schema/security" 
+			 xmlns:beans="http://www.springframework.org/schema/beans" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans 
+								http://www.springframework.org/schema/beans/spring-beans.xsd 
+								http://www.springframework.org/schema/security 
+								http://www.springframework.org/schema/security/spring-security.xsd "> 
+	
+	<http auto-config="true" use-expressions="true"> 
+	
+		<form-login login-page="/signin" 
+					username-parameter="user_id" 
+					password-parameter="password" 
+					authentication-failure-url="/signin?error=true" 
+					default-target-url="/mypage" 
+					always-use-default-target="false" /> 
+					
+		<logout invalidate-session="true" 
+				logout-success-url="/signin" 
+				logout-url="/signout" /> 
+				
+		<access-denied-handler ref="loginDeniedHandler"/>
+	</http> 
+	
+	<authentication-manager> 
+		<authentication-provider> 
+			<password-encoder ref="passwordEncoder"/> 
+			<user-service> 
+				<user name="guest" password="35675e68f4b5af7b995d9205ad0fc43842f16450" authorities="ROLE_USER"/> 
+				<user name="admin" password="d033e22ae348aeb5660fc2140aec35850c4da997" authorities="ROLE_ADMIN"/> 
+			</user-service> 
+		</authentication-provider>
+	</authentication-manager> 
+	
+	<beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder" />
+	
+	<beans:bean id="loginDeniedHandler" class="com.filproject.common.security.LoginDeniedHandler"></beans:bean> 
+	
+</beans:beans>
