@@ -9,32 +9,36 @@
 	
 	<http auto-config="true" use-expressions="true"> 
 	
-		<form-login login-page="/signin" 
-					username-parameter="user_id" 
-					password-parameter="password" 
-					authentication-failure-url="/signin?error=true" 
-					default-target-url="/mypage" 
-					always-use-default-target="false" /> 
+		<form-login login-page="/login" 
+					username-parameter="memId" 
+					password-parameter="memPw"
+					authentication-success-handler-ref="loginSuccessHandler" 
+					authentication-failure-handler-ref="loginFailureHandler"
+					login-processing-url="/loginProcess"/>
 					
-		<logout invalidate-session="true" 
-				logout-success-url="/signin" 
-				logout-url="/signout" /> 
+		<logout logout-url="/logout"
+        	success-handler-ref="logoutSuccessHandler"/> 
 				
-		<access-denied-handler ref="loginDeniedHandler"/>
+		<access-denied-handler ref="customAccessDeniedHandler"/>
 	</http> 
 	
 	<authentication-manager> 
-		<authentication-provider> 
-			<password-encoder ref="passwordEncoder"/> 
-			<user-service> 
-				<user name="guest" password="35675e68f4b5af7b995d9205ad0fc43842f16450" authorities="ROLE_USER"/> 
-				<user name="admin" password="d033e22ae348aeb5660fc2140aec35850c4da997" authorities="ROLE_ADMIN"/> 
-			</user-service> 
-		</authentication-provider>
-	</authentication-manager> 
+		<authentication-provider ref="CustomAuthenticationProvider"/>
+	</authentication-manager>
+	
+	<!--
+    provider는 이미 form에서 id 및 pwd(암호화 된값)을 가져오고 db에서 가져온 값을 UserService를 통해  UserDetail을 저장을 하며
+    UserDetail은 인증정보(db에서 가져온 사용자 값) 과 권한정보를 
+    가져와서 provider는 먼저 인증을 비교한후  true가 되면 권한(Grant Authority)을 부여한다.      
+ 	-->
+ 
+    <beans:bean id="CustomAuthenticationProvider" class="com.filproject.common.security.CustomAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="customUserService"></beans:property>
+        <beans:property name="passwordEncoder" ref="passwordEncoder"></beans:property>
+    </beans:bean> 
 	
 	<beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder" />
 	
-	<beans:bean id="loginDeniedHandler" class="com.filproject.common.security.LoginDeniedHandler"></beans:bean> 
+	<beans:bean id="customAccessDeniedHandler" class="com.filproject.common.security.CustomAccessDeniedHandler"></beans:bean> 
 	
 </beans:beans>
