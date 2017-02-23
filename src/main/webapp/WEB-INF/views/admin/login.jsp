@@ -43,21 +43,23 @@
 					<span class="logo"></span> FIL <small>관리자 시스템 입니다.</small>
 				</div>
 			</div>
-			<!-- end brand -->
-			<div class="login-content">
-				<div class="form-group m-b-20">
-					<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value="admin" />
+			<form id="frm" name="frm">
+				<!-- end brand -->
+				<div class="login-content">
+					<div class="form-group m-b-20">
+						<input type="text" class="form-control input-lg" alt="아아디" placeholder="ID" id="memId" name="memId" value="admin" />
+					</div>
+					<div class="form-group m-b-20">
+						<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="1234" />
+					</div>
+					<div class="login-buttons">
+						<button type="button" class="btn btn-success btn-block btn-lg" onsubmit="return false;" id="loginBtn" name="chk_login">로그인하기</button>
+					</div>
+					<div class="m-t-20">
+						<!-- 회원 등록은 다음 연락처로 문의 해주세요. -->
+					</div>
 				</div>
-				<div class="form-group m-b-20">
-					<input type="password" class="form-control input-lg" alt="비밀번호" placeholder="Password" id="memPw" name="memPw" value="1234" />
-				</div>
-				<div class="login-buttons">
-					<button type="button" class="btn btn-success btn-block btn-lg" onsubmit="return false;" id="loginBtn" name="chk_login">로그인하기</button>
-				</div>
-				<div class="m-t-20">
-					<!-- 회원 등록은 다음 연락처로 문의 해주세요. -->
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	
@@ -73,23 +75,26 @@
 		
 		$('#loginBtn').on('click',function(){
 			
-
 		CALL_AJAX.reqAjax({
 				type		: 'POST',
     			url			: url,
     			dataType	: 'json',
     			data		: {'memId': $('#memId').val(), 'memPw': $('#memPw').val()},
     			success		: ajaxSuccFunc,
-    			error       : ajaxFailFunc
+    			error : function(xhr, status, error) {
+	                 //alert("에러발생");
+	                 console.log(xhr);
+	                 console.log(status);
+	                 console.log(error);
+	           }
 			});
 		});
 		 
 		var ajaxSuccFunc = function(data){
 			if (data.success == 'Y') {
-				alert('성공');
-				location.href = '/admin/member/list';				
+				location.href = data.returnUrl;				
 			} else {
-				alert('실패');
+				alert(data.message);
 			}
 		}
 

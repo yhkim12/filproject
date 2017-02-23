@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.filproject.common.security.vo.UserVO;
+
  
 public class CustomUserDetails implements UserDetails {
 

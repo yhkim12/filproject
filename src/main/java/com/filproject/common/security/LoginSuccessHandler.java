@@ -21,25 +21,22 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	
-
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
 
-    	System.out.println(auth.getAuthorities().getClass().getName());
-      
     	List<GrantedAuthority> authorities = (List<GrantedAuthority>) auth.getAuthorities();
     	String strAuth = authorities.get(0).getAuthority();
     	
     	ObjectMapper om = new ObjectMapper();
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("success", true);
-		if (strAuth.equals("ROLE_ADMIN")) {
-			map.put("returnUrl", "/admin/admin.do");
+		map.put("success", "Y");
+		
+		if (strAuth.equals("admin")) {
+			map.put("returnUrl", "/admin/member/list");
 		} else {
-			map.put("returnUrl", "/user/user.do");
+			map.put("returnUrl", "/user/today/list");
 		}
 
-		// {"success" : true, "returnUrl" : "..."}
 		String jsonString = om.writeValueAsString(map);
 
 		OutputStream out = response.getOutputStream();

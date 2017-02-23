@@ -1,4 +1,4 @@
-package com.filproject.common.security;
+package com.filproject.common.security.vo;
 
 import java.io.Serializable;
 
