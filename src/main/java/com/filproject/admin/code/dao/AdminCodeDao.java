@@ -1,5 +1,6 @@
 package com.filproject.admin.code.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminCodeDao {
 
-	Map<String, Object> test() throws Exception;
+	List<Map<String, String>> codeList(Map<String, Object> map) throws Exception;
 
-	int selectMemberCnt(Map<String, Object> map) throws Exception;
+	int codeListCnt(Map<String, Object> map) throws Exception;
 
 }

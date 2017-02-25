@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,15 +28,15 @@ public class AdminCodeController {
 	
 	//코드 목록
 	@RequestMapping(value={"/list"})
-	public String codeList(@RequestParam Map<String, Object> map) {
+	public String codeList(@RequestParam Map<String, Object> map, Model model) {
 		
 		try{
-			adminCodeService.codeList(map);
+			model.addAllAttributes(adminCodeService.codeList(map)); 
 		} catch (Exception e) {
 			logger.error("", e);
 		}
 		
-		return Constant.adminDefaultPath + "list";
+		return Constant.adminDefaultPath + "code/list";
 	}
 	
 }

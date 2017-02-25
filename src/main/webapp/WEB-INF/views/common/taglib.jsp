@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="custom" uri="/tlds/custom-taglib"%>
+
 <%
 pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
 %>
-<link rel="stylesheet" type="text/css" href="/css/custom.css">
-<c:set var="IMG_EXT">jpg, png, jpeg</c:set>

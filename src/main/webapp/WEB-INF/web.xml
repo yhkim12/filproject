@@ -79,4 +79,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/tlds/custom-taglib</taglib-uri>
+			<taglib-location>/WEB-INF/tlds/custom-taglib.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
 </web-app>

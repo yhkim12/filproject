@@ -18,9 +18,9 @@
 	<http pattern="/admin/**" auto-config="true" use-expressions="true"> 
 	
 		<security:csrf disabled="true" />
-		<security:intercept-url pattern="/admin/" access="permitAll" />
+		<!-- <security:intercept-url pattern="/admin/" access="permitAll" />
 		<security:intercept-url pattern="/admin/login" access="permitAll" />
-		<security:intercept-url pattern="/admin/**/**" access="hasAuthority('admin')" />
+		<security:intercept-url pattern="/admin/**/**" access="hasAuthority('admin')" /> -->
 	
 		<form-login login-page="/admin/login" 
 					username-parameter="memId" 
@@ -36,10 +36,10 @@
 	
 	<http pattern="/user/**" auto-config="true" use-expressions="true"> 
 
-		<security:csrf disabled="true" />
+		<!-- <security:csrf disabled="true" />
 		<security:intercept-url pattern="/user/" access="permitAll" />
 		<security:intercept-url pattern="/user/login" access="permitAll" />
-		<security:intercept-url pattern="/user/**/**" access="hasAuthority('user')" />
+		<security:intercept-url pattern="/user/**/**" access="hasAuthority('user')" /> -->
 	
 		<form-login login-page="/user/login" 
 					username-parameter="memId" 

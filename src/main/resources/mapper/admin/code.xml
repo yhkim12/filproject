@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.filproject.admin.code.dao.AdminCodeDao">
+ 
+	<select id="codeListCnt" parameterType="map" resultType="int">
+		select	count(0) 
+		from	t_common_code 
+		where	del_yn = 'N'
+	</select>
+ 
+	<select id="codeList" parameterType="map" resultType="map">
+		select	seq, cd, up_cd, cd_nm 
+		from	t_common_code 
+		where	del_yn = 'N'
+		limit ${currentPage}, ${recordsPerPage}
+	</select>
+ 
+</mapper>
